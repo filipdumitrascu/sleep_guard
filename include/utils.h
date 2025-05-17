@@ -3,23 +3,14 @@
 
 #include <Wire.h>
 #include <Arduino.h>
+#include <vector>
 
 constexpr int sdaEsp32{ 21 };
 constexpr int sclEsp32{ 22 };
 constexpr int baudRate{ 115200 };
 
-enum FSM {INIT, SET_ALARM, MEASURE, WAKE_UP, SEND_DATA};
+enum FSM {INIT, SET_ALARM, MEASURE, WAKEUP, WIFI_CONNECT, SEND_DATA, END};
 extern FSM currentDeviceState;
-
-struct UserData {
-    float accelX, accelY, accelZ;     // accelerometer (m/s^2)
-    float gyroX, gyroY, gyroZ;        // gyroscop (rad/s)
-    float bodyTemp;                   // body temperature (°C)
-    float noiseLevel;                 // noise (dB)
-    float ambientTemp;                // room temperature (°C)
-    float humidity;                   // humidity (%)
-};
-
 
 /**
  * @brief Used only to discover i2c addresses

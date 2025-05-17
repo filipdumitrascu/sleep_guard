@@ -41,6 +41,8 @@ void buttonsInit()
     // Detect interrupt
     attachInterrupt(digitalPinToInterrupt(buttonNextPin), handleButtonNext, FALLING);
     attachInterrupt(digitalPinToInterrupt(buttonSetPin), handleButtonSet, FALLING);
+
+    Serial.println("Buttons initialised");
 }
 
 void buttonsLogic()

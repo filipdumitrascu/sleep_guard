@@ -6,11 +6,14 @@
 #include "mpu6050.h"
 #include "dht11.h"
 #include "max4466.h"
+#include "sleep.h"
 
 #include <esp_bt.h>
 #include <esp32-hal-bt.h>
 
 FSM currentDeviceState;
+UserData sleepData;
+SleepType currentSleepType;
 
 void setup()
 {
@@ -19,15 +22,10 @@ void setup()
     esp_bt_controller_disable();
     esp_bt_controller_deinit();
 
-    // Welcome screen
-    lcdPrintMessage("SleepGuard", "welcomes you!", 3500);
-
-    // Connect to wifi (send sleep data to external device)
-    connectToWiFi();
-
     // Phase0: init hardware components and the time
     // after which the alarm will ring
     currentDeviceState = INIT;
+    currentSleepType = RESTLESS;
 
     /* 0. Initializations
     - i2c (on esp32)
@@ -43,7 +41,7 @@ void setup()
 
     lcd.init();
     lcd.backlight();
-    
+
     buttonsInit();
     buzzerInit();
 
@@ -51,7 +49,8 @@ void setup()
     dhtInit();
     micInit();
 
-    // Set sleep duration
+    // Welcome screen and set sleep duration
+    lcdPrintMessage("SleepGuard", "welcomes you!", 3500);
     lcdPrintMessage("How much do you", "want to sleep?", 3500);
 
     // No lcd flickering in loop function
@@ -69,10 +68,12 @@ void loop()
     mpuReadData();
     dhtReadData();
     micReadData();
+    updateSleepType();
 
     // Phase3: Wake up
     buzzerLogic();
 
-    // Phase4: Send data
+    // Phase4: Connect to wifi (send sleep data to external device)
+    connectToWiFi();
     sendData();
 }

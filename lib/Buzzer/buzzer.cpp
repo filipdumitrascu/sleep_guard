@@ -15,6 +15,8 @@ void buzzerInit()
 {
     pinMode(buzzerPin, OUTPUT);
     digitalWrite(buzzerPin, LOW);
+
+    Serial.println("Buzzer initialised");
 }
 
 void setAlarm()
@@ -50,18 +52,18 @@ void buzzerLogic()
 {
     if (timerDone) {
         timerDone = false;
-        currentDeviceState = WAKE_UP;
+        currentDeviceState = WAKEUP;
         lcd.backlight();
 
         lcdPrintMessage("Wake up!", "", 0);
         tone(buzzerPin, buzzerFrequency);
     }
 
-    if (currentDeviceState == WAKE_UP && buttonSetPressed) {
+    if (currentDeviceState == WAKEUP && buttonSetPressed) {
         noTone(buzzerPin);
         lcd.clear();
 
         buttonSetPressed = false;
-        currentDeviceState = SEND_DATA;
+        currentDeviceState = WIFI_CONNECT;
     }
 }

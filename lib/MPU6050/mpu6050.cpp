@@ -1,5 +1,6 @@
 #include "mpu6050.h"
 #include "utils.h"
+#include "sleep.h"
 #include "lcd.h"
 
 MPU6050 mpu;
@@ -35,6 +36,17 @@ void mpuReadData()
     float gy_rps = (gy / 131.0) * (M_PI / 180.0);
     float gz_rps = (gz / 131.0) * (M_PI / 180.0);
 
+    // Body temperature
     int16_t tempRaw = mpu.getTemperature();
-    float tempC = (tempRaw / 340.0) + 36.53;
+    float bodyTemp = (tempRaw / 340.0) + 36.53;
+
+    // Store data
+    sleepData.accelY = alpha * ay_mps2 + (1.0 - alpha) * sleepData.accelY;
+    sleepData.accelZ = alpha * az_mps2 + (1.0 - alpha) * sleepData.accelZ;
+
+    sleepData.gyroX = alpha * gx_rps + (1.0 - alpha) * sleepData.gyroX;
+    sleepData.gyroY = alpha * gy_rps + (1.0 - alpha) * sleepData.gyroY;
+    sleepData.gyroZ = alpha * gz_rps + (1.0 - alpha) * sleepData.gyroZ;
+
+    sleepData.bodyTemp = alpha * bodyTemp + (1.0 - alpha) * sleepData.bodyTemp;
 }
