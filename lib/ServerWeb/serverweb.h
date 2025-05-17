@@ -1,8 +1,8 @@
 #ifndef SERVERWEB_H
 #define SERVERWEB_H
 
-constexpr const char *ssid{ "Filip's WIFI" }; // Net pt sarac
-constexpr const char *password{ "0766301419" }; // filipinezul44
+constexpr const char *ssid{ "" };
+constexpr const char *password{ "" };
 
 constexpr long gmtOffsetSec{ 2 * 3600 }; // GMT + 2 (Romania)
 constexpr int daylightOffsetSec{ 3600 }; // Summer hour

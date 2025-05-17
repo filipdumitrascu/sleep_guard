@@ -10,7 +10,6 @@ struct UserData {
     float noise{};                        // noise (dB)
     float ambientTemp{};                  // room temperature (°C)
     float humidity{};                     // humidity (%)
-    unsigned long timestamp{};            // timestamp (ms)
 };
 extern UserData sleepData;
 
@@ -36,7 +35,6 @@ SleepType detectSleepType(const UserData& data);
 
 /**
  * @brief Updates the current sleep type.
- * 
  */
 void updateSleepType();
 

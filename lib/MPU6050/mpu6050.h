@@ -7,6 +7,9 @@
 
 extern MPU6050 mpu;
 
+extern float accelDeviation;
+extern float gyroDeviation;
+
 /**
  * @brief Initializes the mpu
  */

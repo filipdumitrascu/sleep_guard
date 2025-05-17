@@ -9,7 +9,7 @@ constexpr int samples {100};       // num of samples
 void micInit()
 {
     pinMode(micPin, INPUT);
-    Serial.println("Microphone Initialised");
+    Serial.println("Microphone initialised");
 }
 
 void micReadData()
@@ -29,12 +29,12 @@ void micReadData()
     }
 
     float rmsAmplitude = sqrt((float)sumSquares / samples);
-    float db = 0.0;
+    float dB = 0.0;
 
     if (rmsAmplitude > threshold) {
-        db = 20.0 * log10(rmsAmplitude / threshold);
+        dB = 20.0 * log10(rmsAmplitude / threshold);
     }
 
-    // Store data
-    sleepData.noise = alpha * db + (1.0 - alpha) * sleepData.noise;
+    // Update stored data
+    sleepData.noise = alpha * dB + (1.0 - alpha) * sleepData.noise;
 }

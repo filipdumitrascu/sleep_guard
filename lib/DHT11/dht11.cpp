@@ -24,7 +24,7 @@ void dhtReadData()
         return;
     }
 
-    // Store data
+    // Update stored data
     sleepData.ambientTemp = alpha * temp + (1.0 - alpha) * sleepData.ambientTemp;
     sleepData.humidity = alpha * hum    + (1.0 - alpha) * sleepData.humidity;
 }

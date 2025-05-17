@@ -20,7 +20,7 @@ void dotAnimation() {
     if (currentMillis - lastAnimTime >= 500) {
         lastAnimTime = currentMillis;
 
-        lcd.setCursor(10, 0);
+        lcd.setCursor(7, 1);
         for (int i = 0; i < 3; i++) {
             if (i < dotCount) {
                 lcd.print(".");
@@ -39,14 +39,13 @@ void connectToWiFi()
         return;
     }
 
-    lcdPrintMessage("Connecting", "to WiFi...", 2000);
+    lcdPrintMessage("Connecting", "to WiFi", 2000);
 
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
     
     // Wait for connection
     while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
         dotAnimation();
     }
 
