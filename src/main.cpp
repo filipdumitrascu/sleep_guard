@@ -77,3 +77,30 @@ void loop()
     connectToWiFi();
     handleConnections();
 }
+
+
+
+// #include <WiFi.h>  // Pentru ESP32
+// // #include <ESP8266WiFi.h> // Decomentează dacă folosești ESP8266
+
+// const char* ssid = "Net pt sarac";
+// const char* password = "filipinezul44";
+
+// void setup() {
+//   Serial.begin(115200);
+//   WiFi.begin(ssid, password);
+
+//   Serial.print("Conectare la WiFi...");
+//   while (WiFi.status() != WL_CONNECTED) {
+//     delay(500);
+//     Serial.print(".");
+//   }
+
+//   Serial.println("\nConectat cu succes!");
+//   Serial.print("IP: ");
+//   Serial.println(WiFi.localIP());
+// }
+
+// void loop() {
+//   // Codul tău aici
+// }

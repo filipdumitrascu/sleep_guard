@@ -92,21 +92,27 @@ const char* getSleepMessage() {
 
     switch (dominant) {
         case DEEP_SLEEP:
-            return "You had a deep sleep, which is excellent for physical \\
-            recovery and memory consolidation. Keep maintaining a consistent \\
-            bedtime and avoiding screens before sleep to continue getting \\
-            high-quality rest.";
+            return "You had a deep sleep, which is excellent for physical recovery and memory "
+                "consolidation. Keep maintaining a consistent bedtime and avoiding screens before "
+                "sleep to continue getting high-quality rest.";
 
         case REM_SLEEP:
-            return "Your sleep was mostly REM, the phase associated with dreaming and emotional processing. This suggests your brain was quite active during the night. Consider incorporating relaxation techniques before bed to balance your sleep cycle.";
+            return "Your sleep was mostly REM, the phase associated with dreaming and emotional "
+                "processing. This suggests your brain was quite active during the night. Consider "
+                "incorporating relaxation techniques before bed to balance your sleep cycle.";
 
         case LIGHT_SLEEP:
-            return "Your sleep was mostly light, which may not be as restorative. This could be due to stress or an inconsistent sleep schedule. Try improving your sleep hygiene by limiting caffeine and establishing a relaxing bedtime routine.";
+            return "Your sleep was mostly light, which may not be as restorative. This could be due to "
+                "stress or an inconsistent sleep schedule. Try improving your sleep hygiene by limiting "
+                "caffeine and establishing a relaxing bedtime routine.";
 
         case RESTLESS:
-            return "Your sleep was mostly restless, which can affect both physical and mental recovery. It may help to evaluate your sleep environment—ensure it's cool, dark, and quiet—and consider stress-reduction practices like meditation or journaling before bed.";
+            return "Your sleep was mostly restless, which can affect both physical and mental recovery. "
+                "It may help to evaluate your sleep environment—ensure it's cool, dark, and quiet—and "
+                "consider stress-reduction practices like meditation or journaling before bed.";
 
         default:
-            return "Sleep data is unavailable. Make sure your device is worn correctly and synced to capture your sleep patterns accurately.";
+            return "Sleep data is unavailable. Make sure your device is worn correctly and synced to "
+                "capture your sleep patterns accurately.";
     }
 }

@@ -113,10 +113,10 @@ void handleRoot() {
         <p><i class='fas fa-thermometer-half' style='color:#ca3517;'></i> Body Temp: <span class='data'>%.2f &deg;C</span></p>\
         <p><i class='fas fa-temperature-low' style='color:#ff8800;'></i> Ambient Temp: <span class='data'>%.2f &deg;C</span></p>\
         <p><i class='fas fa-tint' style='color:#00add6;'></i> Humidity: <span class='data'>%.2f %%</span></p>\
-        <p><i class='fas fa-volume-up' style='color:#4444cc;'></i> Noise Level: <span class='data'>%.1f dB</span></p>\
+        <p><i class='fas fa-volume-up' style='color:#4444cc;'></i> Noise Level: <span class='data'>%.1f units</span></p>\
         </div>\
         <div class='section'>\
-        <p>Last Accel Y/Z: <span class='data'>%.2f / %.2f m/s&sup2;</span></p>\
+        <p>Last Accel X/Y/Z: <span class='data'>%.2f / %.2f / %.2f m/s&sup2;</span></p>\
         <p><i class='fas fa-sync-alt'></i> Last Gyro X/Y/Z: <span class='data'>%.2f / %.2f / %.2f rad/s</span></p>\
         </div>\
         <div class='section'>\
@@ -134,7 +134,7 @@ void handleRoot() {
             sleepData.ambientTemp,
             sleepData.humidity,
             sleepData.noise,
-            sleepData.accelY, sleepData.accelZ,
+            sleepData.accelX, sleepData.accelY, sleepData.accelZ,
             sleepData.gyroX, sleepData.gyroY, sleepData.gyroZ,
             formatTime(deepSleepTime).c_str(),
             formatTime(remSleepTime).c_str(),
