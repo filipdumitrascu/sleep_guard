@@ -9,7 +9,7 @@ constexpr int sdaEsp32{ 21 };
 constexpr int sclEsp32{ 22 };
 constexpr int baudRate{ 115200 };
 
-enum FSM {INIT, SET_ALARM, MEASURE, WAKEUP, WIFI_CONNECT, SEND_DATA, END};
+enum FSM {INIT, SET_ALARM, MEASURE, WAKEUP, WIFI_CONNECT, SERVER_ON};
 extern FSM currentDeviceState;
 
 /**

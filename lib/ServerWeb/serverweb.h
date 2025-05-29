@@ -1,8 +1,8 @@
 #ifndef SERVERWEB_H
 #define SERVERWEB_H
 
-constexpr const char *ssid{ "" };
-constexpr const char *password{ "" };
+constexpr const char *ssid{ "Net pt sarac" };
+constexpr const char *password{ "filipinezul44" };
 
 constexpr long gmtOffsetSec{ 2 * 3600 }; // GMT + 2 (Romania)
 constexpr int daylightOffsetSec{ 3600 }; // Summer hour
@@ -19,10 +19,9 @@ void dotAnimation();
 void connectToWiFi();
 
 /**
- * @brief Send data through wifi
- * to external device
+ * @brief Handle http requests.
  */
-void sendData();
+void handleConnections();
 
 /**
  * @brief Html data

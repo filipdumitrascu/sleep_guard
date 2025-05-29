@@ -75,5 +75,5 @@ void loop()
 
     // Phase4: Connect to wifi (send sleep data to external device)
     connectToWiFi();
-    sendData();
+    handleConnections();
 }

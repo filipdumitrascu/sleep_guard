@@ -2,9 +2,9 @@
 #include "utils.h"
 #include "sleep.h"
 
-constexpr int adcCenter{ 2048 };    // ADC baseline (12 bits)
-constexpr int threshold{ 200 };     // noise threshold
-constexpr int samples {100};       // num of samples
+constexpr int adcCenter{ 2048 };
+constexpr float Vref{ 3.3 };
+constexpr int samples{ 100 };
 
 void micInit()
 {
@@ -12,29 +12,30 @@ void micInit()
     Serial.println("Microphone initialised");
 }
 
-void micReadData()
-{
+void micReadData() {
     if (currentDeviceState != MEASURE) {
         return;
     }
-    
+
     long sumSquares = 0;
 
     for (int i = 0; i < samples; i++) {
         int raw = analogRead(micPin);
-        int amplitude = raw - adcCenter;
+        int amplitude = raw - adcCenter;     // remove DC offset
 
-        sumSquares += amplitude * amplitude;
-        delay(1);
+        sumSquares += amplitude * amplitude; // accumulate square of amplitudes
+        delay(1);                            // small delay between samples
     }
 
-    float rmsAmplitude = sqrt((float)sumSquares / samples);
-    float dB = 0.0;
+    float rms = sqrt((float)sumSquares / samples);  // compute RMS value
 
-    if (rmsAmplitude > threshold) {
-        dB = 20.0 * log10(rmsAmplitude / threshold);
-    }
+    // Convert RMS ADC value to voltage
+    float Vrms = (rms / 4095.0) * Vref;
 
-    // Update stored data
-    sleepData.noise = alpha * dB + (1.0 - alpha) * sleepData.noise;
+    // Estimate Sound Pressure Level (SPL) in decibels
+    // 0.00631 V corresponds to -44 dBV microphone sensitivity
+    float dBSPL = 20.0 * log10(Vrms / 0.00631) + 94.0;
+
+    // Store filtered noise level
+    sleepData.noise = alpha * dBSPL + (1.0 - alpha) * sleepData.noise;
 }

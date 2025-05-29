@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "buttons.h"
 #include "lcd.h"
+#include "sleep.h"
 
 volatile bool timerDone = false;
 hw_timer_t *scanTimer = NULL;
@@ -46,6 +47,9 @@ void setAlarm()
     lcd.clear();
 
     Serial.printf("Timer set to trigger in %lu seconds.\n\n", targetSeconds);
+    
+    // start timestamp
+    stageStartTime = millis();
 }
 
 void buzzerLogic()
